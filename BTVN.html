@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<meta charset="UTF-B">
+<body style="max-width: 700px;">
+    <h1>A Completed Guide to Flexbox in CSS (Phần 1)</h1>
+    <p>Hôm nay mình sẽ giới thiệu với các bạn những tính năng cần biết trong Flexbox của CSS. Vì Flexbox có khá nhiều tính năng hay ho nên mình sẽ tách ra ít nhất là 2 phần để có thể giới thiệu một cách đầy đủ !</p>
+    <h2>I, Một vài thuật ngữ</h2>
+    <p>Bởi vì Flexbox là cả một module trong CSS chứ không phải chỉ là một thuộc tính, do đó nó có chứa hàng tá các thuật ngữ riêng, ta hãy tìm hiểu qua một chút trước khi đi vào các tính năng của Flexbox nhé.</p>
+    <p>Nếu như với layout bình thường của CSS, việc hiển thị của các elements sẽ được dựa trên block và inline flow directions, thì trong flex layout chúng ta sử dụng "flex-flow directions". Các bạn hãy quan sát ảnh dưới:</p>
+    <img src="./cbfd1fde-582c-4d2c-b2ed-56a44b1e4994.webp" height="250">
+    <p>Nào hãy cùng giải thích từng khái niệm nhé:</p>
+    <ul>
+           <li><p><strong>Flex container:</strong> Là một element được cài đặt thuộc tính display: flex /* hoặc inline-flex */. Đây sẽ là môi trường chứa các phần tử khác cần được hiển thị theo Flexbox.</p> </li>
+    </ul>
+    <ul>
+        <li><p><strong>Flex item:</strong> Các phần tử con của container được gọi là item, ở item bạn có thể thiết lập nó sẽ sử dụng bao nhiêu cột trong một container, hoặc thiết lập thứ tự hiển thị của nó.</p></li>
+    </ul>
+    <p>Đó là hai khái niệm chính, bây giờ chúng ta sẽ xem qua một vài khái niệm khác nhé:</p>
+    <ul>
+        <li><p><strong>main axis</strong>- Đây là trục mà các item sẽ hiển thị khi nằm trong container. Nó không nhất thiết phải theo chiều ngang như trên hình vẽ (đấy chỉ là mình lấy ví dụ thế), chúng ta có thể thay đổi được hướng của main-axis.</p></li>
+
+    </ul>
+    <ul>
+        <li><p><strong>main-start | main-end </strong>- Đây là 2 điểm bắt đầu và kết thúc của trục main.</p></li>
+
+    </ul>
+    <ul>
+        <li><p><strong>main size</strong> - Bạn có thể hiểu đơn giản là kích thước (chiều rộng hoặc dọc) của mỗi item dựa theo trục main axis.</p></li>
+    </ul>
+    <ul>
+        <li><p><strong>cross axis</strong> - Đây là chiều vuông góc với trục main, direction của nó phụ thuộc hoàn toàn vào việc bạn cài đặt direction của trục main như thế nào.</p></li>
+    </ul>
+    <ul>
+        <li><p><strong>cross-start | cross-end</strong> - Đây là 2 điểm bắt đầu và kết thúc của trục cross.</p></li>
+    </ul>
+    <ul>
+        <li><p><strong>cross size</strong> - Kích thước (chiều rộng hoặc dọc) của mỗi item dựa theo trục cross.</p></li>
+    </ul>
+    <h2>II, Các thuộc tính dành cho flex container</h2>
+    <h3>1, display</h3>
+    <p>Đây đơn giản là thuộc tính display trong CSS thôi. Cũng như Block, Inline hay Inline-block, ta tạo ra một flex container bằng cách thiết lập cho 1 element thuộc tính này có giá trị như sau:</p>
+    <button>
+     .container {
+        <p>display: flex; /* or inline-flex */</p>
+      }</button>
+      <h3>2, flex-direction</h3>
+      <img src="./a2.webp" height="250">
+      <p>Đây chính là thuộc tính sẽ giúp điều chỉnh hướng của main-axis (cũng chính là hướng mà các item sẽ hiển thị). Flexbox là một single-direction layout concept, vậy nên các item sẽ <strong>chỉ</strong> được hiển thị theo 1 trong 2 kiểu đó là ngang hoặc dọc.</p>
+       <button>
+        .container {
+            <p>flex-direction: row | row-reverse | column | column-reverse;</p>
+          }
+       </button>
+       <ul>
+        <li>row (kiểu mặc định): Các item được sắp xếp theo chiều ngang, từ trái sang phải.</li>
+       </ul>
+       <ul>
+        <li>row-reverse : Các item được sắp xếp theo chiều ngang, từ phải sang trái.</li>
+       </ul>
+       <ul>
+        <li>
+            column : Các item được sắp xếp theo chiều dọc, từ trên xuống dưới.
+        </li>
+       </ul>
+       <ul>
+        <li>column-reverse : Các item được sắp xếp theo chiều dọc, từ dưới lên trên.
+        </li>
+       </ul>
+       <h3>3, flex-wrap</h3>
+       <img src="./a3.webp" height="250">
+       <p>Mặc định thì các flex item sẽ luôn nằm trên 1 dòng, ta có thể thay đổi điều này dựa trên thuộc tính flex-wrap.</p>
+      <button>
+        .container{
+            <p>flex-wrap: nowrap | wrap | wrap-reverse;</p>
+          }
+      </button>
+      <ul>
+        <li>nowrap (default): Các flex item sẽ luôn nằm trên 1 dòng</li>
+      </ul>
+      <ul>
+        <li>wrap: Các flex item sẽ nằm trên nhiều dòng, từ trên xuống dưới</li>
+      </ul>
+      <ul>
+        <li>wrap-reverse: Các flex item sẽ nằm trên nhiều dòng, từ dưới lên trên</li>
+      </ul>
+      <h3>4, justify-content</h3>
+      <img src="./a4.webp" height="450">
+      <p>Đây là cách mà các item sắp xếp cách hiển thị trong container.</p>
+      <button>
+        .container {
+            <p>justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;</p>
+          }
+      </button>
+      <ul>
+        <li>flex-start (default): Các item được "căn lề trái"</li>
+      </ul>
+      <ul>
+        <li>flex-end: Các item được "căn lề phải"</li>
+      </ul>
+      <ul>
+        <li>center: Các item được "căn giữa"</li>
+      </ul>
+      <ul>
+        <li>space-between: Các item được phân phối khoảng cách ngang nhau trên dòng. Item đầu tiên được gắn chặt vào main start và item cuối cùng được gắn chặt vào main end</li>
+      </ul>
+      <ul>
+        <li>space-around: Tương tự như space-between tuy nhiên item đầu tiên và cuối cùng "cách lề" một khoảng bằng <strong>nửa</strong> khoảng cách giữa các item</li>
+      </ul>
+      <ul>
+        <li>space-evenly: Tương tự như space-around tuy nhiên item đầu tiên và cuối cùng "cách lề" một khoảng bằng khoảng cách giữa các item</li>
+      </ul>
+      <h3>5, align-items</h3>
+      <img src="./a5.webp" height="450">
+      <p>Có thể coi đây là justify-content phiên bản dành cho cross-axis.</p>
+      <button>
+        .container {
+            <p>align-items: stretch | flex-start | flex-end | center | baseline;</p>
+          }
+      </button>
+      <ul>
+        <li>stretch (default): Các item sẽ co giãn để "fill" đầy container (vẫn tuân theo max-width/min-width)</li>
+      </ul>
+      <ul>
+        <li>flex-start: Có thể coi là "căn lề trên"</li>
+      </ul>
+      <ul>
+        <li>flex-end: Đây là "căn lề dưới"</li>
+      </ul>
+      <ul>
+        <li>center: Các item nằm giữa container</li>
+      </ul>
+      <ul>
+        <li>baseline: Các item được sắp xếp theo baseline của chúng.</li>
+      </ul>
+      <h3>6, align-content</h3>
+      <img src="./a6.webp" height="450">
+      <p>Nếu như align-items là justify-content phiên bản cross-axis dành cho các item nằm trên 1 dòng, thì align-content là phiên bản dành cho <strong>các dòng.</strong></p>
+       <button>
+        .container {
+            <p>align-content: flex-start | flex-end | center | space-between | space-around | stretch;</p>
+          }
+       </button>
+       <ul>
+        <li>flex-start: Các dòng được "căn lề trên"</li>
+      </ul>
+      <ul>
+        <li>flex-end: Các dòng được "căn lề dưới"</li>
+      </ul>
+      <ul>
+        <li>center: Các dòng được "căn giữa"</li>
+      </ul>
+      <ul>
+        <li>space-between: Tương tự phần justify-content nhưng theo trục cross</li>
+      </ul>
+      <ul>
+        <li>space-around: Như trên</li>
+      </ul>
+      <ul>
+        <li>stretch (default): Các dòng được kéo giãn để fill đầy các khoảng trống</li>
+      </ul>
+      <h2>III, Tạm kết</h2>
+      <p>Trong bài này ta đã đi qua được các thuộc tính cần thiết dành cho flex container, bài sau chúng ta sẽ cùng tìm hiểu về các thuộc tính dành cho flex item nhé !</p>
+      <strong>Nguồn:</strong>
+      <ol>
+        <li>https://www.w3schools.com/css/css3_flexbox.asp</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox</li>
+        <li>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</li>
+      </ol>
+      <!-- <p>a</p>
+    <DIV>a</DIV>
+    <h6>c</h6>
+    <button>a</button> 
+    <span>a</span> -->
+</body>
+</html>
